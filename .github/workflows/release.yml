@@ -34,7 +34,5 @@ jobs:
         with:
           artifacts: "dist/*"
           generateReleaseNotes: true
-          draft: true
           commit: ${{ github.sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ inputs.tag }}
