@@ -676,12 +676,12 @@ def host_config_incompatible_error(param, param_value, incompatible_param):
 
 class ContainerConfig(dict):
     def __init__(
-        self, version, image, command, hostname=None, user=None, detach=False,
+        self, version, image, command=None, hostname=None, user=None, detach=False,
         stdin_open=False, tty=False, ports=None, environment=None,
         volumes=None, network_disabled=False, entrypoint=None,
         working_dir=None, domainname=None, host_config=None, mac_address=None,
         labels=None, stop_signal=None, networking_config=None,
-        healthcheck=None, stop_timeout=None, runtime=None
+        healthcheck=None, stop_timeout=None, runtime=None, shell=None,
     ):
 
         if stop_timeout is not None and version_lt(version, '1.25'):
@@ -762,7 +762,7 @@ class ContainerConfig(dict):
             'AttachStdout': attach_stdout,
             'AttachStderr': attach_stderr,
             'Env': environment,
-            'Cmd': command,
+            'Cmd': None,
             'Image': image,
             'Volumes': volumes,
             'NetworkDisabled': network_disabled,
@@ -775,5 +775,6 @@ class ContainerConfig(dict):
             'StopSignal': stop_signal,
             'Healthcheck': healthcheck,
             'StopTimeout': stop_timeout,
-            'Runtime': runtime
+            'Runtime': runtime,
+            'Shell': shell,
         })

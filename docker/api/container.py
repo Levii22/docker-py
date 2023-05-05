@@ -223,7 +223,8 @@ class ContainerApiMixin:
                          mac_address=None, labels=None, stop_signal=None,
                          networking_config=None, healthcheck=None,
                          stop_timeout=None, runtime=None,
-                         use_config_proxy=True, platform=None):
+                         use_config_proxy=True, platform=None, shell=None,
+                         ):
         """
         Creates a container. Parameters are similar to those for the ``docker
         run`` command except it doesn't support the attach options (``-a``).
@@ -399,6 +400,7 @@ class ContainerApiMixin:
                 contains a proxy configuration, the corresponding environment
                 variables will be set in the container being created.
             platform (str): Platform in the format ``os[/arch[/variant]]``.
+            shell (str): Shell for shell-form of RUN, CMD, ENTRYPOINT.
 
         Returns:
             A dictionary with an image 'Id' key and a 'Warnings' key.
@@ -426,7 +428,7 @@ class ContainerApiMixin:
             network_disabled, entrypoint, working_dir, domainname,
             host_config, mac_address, labels,
             stop_signal, networking_config, healthcheck,
-            stop_timeout, runtime
+            stop_timeout, runtime, shell
         )
         return self.create_container_from_config(config, name, platform)
 
