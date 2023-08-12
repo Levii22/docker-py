@@ -400,7 +400,7 @@ class ContainerApiMixin:
                 contains a proxy configuration, the corresponding environment
                 variables will be set in the container being created.
             platform (str): Platform in the format ``os[/arch[/variant]]``.
-            shell (str): Shell for shell-form of RUN, CMD, ENTRYPOINT.
+            shell (list): Shell for shell-form of RUN, CMD, ENTRYPOINT.
 
         Returns:
             A dictionary with an image 'Id' key and a 'Warnings' key.

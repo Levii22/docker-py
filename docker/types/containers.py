@@ -762,7 +762,7 @@ class ContainerConfig(dict):
             'AttachStdout': attach_stdout,
             'AttachStderr': attach_stderr,
             'Env': environment,
-            'Cmd': None,
+            'Cmd': command,
             'Image': image,
             'Volumes': volumes,
             'NetworkDisabled': network_disabled,
