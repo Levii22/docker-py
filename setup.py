@@ -38,7 +38,7 @@ with codecs.open('./README.md', encoding='utf-8') as readme_md:
     long_description = readme_md.read()
 
 setup(
-    name="dockerNew",
+    name="docker",
     use_scm_version={
         'write_to': 'docker/_version.py'
     },
