@@ -12,11 +12,15 @@ on:
         type: boolean
         default: true
 
+env:
+  DOCKER_BUILDKIT: '1'
+  FORCE_COLOR: 1
+
 jobs:
   publish:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v4
         with:
@@ -24,7 +28,7 @@ jobs:
 
       - name: Generate Pacakge
         run: |
-          pip3 install wheel
+          pip3 install setuptools wheel
           python setup.py sdist bdist_wheel
         env:
           SETUPTOOLS_SCM_PRETEND_VERSION_FOR_DOCKER: ${{ inputs.tag }}
