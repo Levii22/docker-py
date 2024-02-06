@@ -10,7 +10,6 @@ ROOT_DIR = os.path.dirname(__file__)
 SOURCE_DIR = os.path.join(ROOT_DIR)
 
 requirements = [
-    'packaging >= 14.0',
     'requests >= 2.26.0',
     'urllib3 >= 1.26.0',
 ]
@@ -78,6 +77,6 @@ setup(
         'Topic :: Utilities',
         'License :: OSI Approved :: Apache Software License',
     ],
-    maintainer='Ulysses Souza',
-    maintainer_email='ulysses.souza@docker.com',
+    maintainer='Docker, Inc.',
+    maintainer_email='no-reply@docker.com',
 )
