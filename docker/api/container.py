@@ -1251,7 +1251,7 @@ class ContainerApiMixin:
         self, container, blkio_weight=None, cpu_period=None, cpu_quota=None,
         cpu_shares=None, cpuset_cpus=None, cpuset_mems=None, mem_limit=None,
         mem_reservation=None, memswap_limit=None, kernel_memory=None,
-        restart_policy=None
+        restart_policy=None, nano_cpus=None
     ):
         """
         Update resource configs of one or more containers.
@@ -1270,6 +1270,7 @@ class ContainerApiMixin:
                 disable swap
             kernel_memory (int or str): Kernel memory limit
             restart_policy (dict): Restart policy dictionary
+            nano_cpus (int): CPU quota in units of 1e-9 CPUs
 
         Returns:
             (dict): Dictionary containing a ``Warnings`` key.
@@ -1307,6 +1308,13 @@ class ContainerApiMixin:
                     'for API version < 1.23'
                 )
             data['RestartPolicy'] = restart_policy
+        if nano_cpus is not None:
+            if utils.version_lt(self._version, '1.25'):
+                raise errors.InvalidVersion(
+                    'nano_cpus update is not supported '
+                    'for API version < 1.25'
+                )
+            data['NanoCpus'] = nano_cpus
 
         res = self._post_json(url, data=data)
         return self._result(res, True)

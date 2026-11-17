@@ -495,6 +495,7 @@ class Container(Model):
                 disable swap
             kernel_memory (int or str): Kernel memory limit
             restart_policy (dict): Restart policy dictionary
+            nano_cpus (int): CPU quota in units of 1e-9 CPUs
 
         Returns:
             (dict): Dictionary containing a ``Warnings`` key.
